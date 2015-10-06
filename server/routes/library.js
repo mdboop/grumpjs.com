@@ -3,9 +3,12 @@ var path      = require('path');
 var router    = express.Router();
 var Package   = require('../models/Package');
 
+console.log('setting up routes');
+
 // Get all them grumps
 router.get('/', function(req, res, next) {
   var grump = req.params.grump;
+  console.log('thing');
   
   Package.find({}, function (err, result) {
     console.log("Hi!");
@@ -26,7 +29,9 @@ router.get('/', function(req, res, next) {
 // Search for a specific grump or user in our DB
 router.get('/:search', function(req, res, next) {
   var search = req.params.search;
+  console.log('got search!');
   var data = {};
+  console.log(search);
 
   // Query for user with name first
   Package.find({"author": search}, function (err, result) {
