@@ -17,7 +17,7 @@ router.get('/signin', function(req, res, next) {
       formData : {
         code: req.query.code,
         client_secret: process.env.GRUMP_GITHUB_API_SECRET,
-        client_id:'61c332d3744979e21dfc',
+        client_id:'8ead6371344951047780',
         scope: "user:email"
       }
     };

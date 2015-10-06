@@ -34,7 +34,8 @@ router.get('/:search', function(req, res, next) {
     data.user = result;
 
     // Now query for grumps with this name
-    Package.find({"defaultCommand": search}, function (err, result) {
+    var re = new RegExp(search, "i");
+    Package.find({"defaultCommand": re}, function (err, result) {
       if(err) console.log(err);
       data.grumps = result;
 
