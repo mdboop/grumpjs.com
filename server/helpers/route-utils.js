@@ -14,7 +14,7 @@ var github = new GitHubApi({
 
 github.authenticate({
     type: "oauth",
-    key: "61c332d3744979e21dfc",
+    key: "8ead6371344951047780",
     secret: process.env.GRUMP_GITHUB_API_SECRET
 });
 
