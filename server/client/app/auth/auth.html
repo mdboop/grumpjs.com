@@ -1,26 +1,36 @@
 <div id='signinForm' ng-controller="AuthController">
   <div class="container">
-    <form class='form-horizontal' role='form' name="signinForm" ng-submit="initiateSignin()">
+    <form class='form-horizontal' role='form' name="githubForm" ng-submit="initiateGithubSignin()">
       <div class="form-group">
         <div class="col-sm-2 col-sm-10">
-          <button type='submit' class="btn btn-default" ng-click="login()">
+          <button type='submit' class="btn btn-default" ng-click="githubLogin()">
             Signin using GitHub
           </button>
         </div>
       </div>
+    </form>
 
+    <form class='form-horizontal' role='form' name="loginForm" ng-submit="login()">
       <div class="form-group">
         <label class="control-label " for='username'>
           Username
         </label>
-        <input class="textbox form-control col-sm-2" ng-model="doc.username" placeholder="who are you?" id='username' required>
+        <input class="textbox form-control col-sm-2" ng-model="username" placeholder="who are you?" id='username' required>
       </div>
 
       <div class="form-group">
         <label class="control-label " for='password'>
           Password
         </label>
-        <input type="password" class="textbox form-control col-sm-2" ng-model="doc.password" placeholder="" id='password' required>
+        <input type="password" class="textbox form-control col-sm-2" ng-model="password" placeholder="" id='password' required>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-2 col-sm-10">
+          <button type='submit' class="btn btn-default">
+            Login
+          </button>
+        </div>
       </div>
     </form>
   </div>
