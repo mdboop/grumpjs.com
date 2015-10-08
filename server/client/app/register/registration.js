@@ -1,6 +1,6 @@
 angular.module('grump.registration', [])
 
-.controller('RegistrationController', function ($scope, $location, $http) {
+.controller('RegistrationController', function ($scope, $window, $http) {
   $scope.username = "";
   $scope.password = "";
   $scope.email    = "";
@@ -13,11 +13,11 @@ angular.module('grump.registration', [])
     }
 
     var successCallback = function() {
-
+      $window.location.href = '#/signin';
     }
 
-    var errorCallback = function() {
-
+    var errorCallback = function(err) {
+      // indicate to the user that there was an error during registration
     }
 
     $http.post('./api/register', user).then(successCallback, errorCallback);

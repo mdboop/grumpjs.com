@@ -10,7 +10,7 @@ router.post('/', function(req, res, next) {
   var newUser = req.body;
 
   // post to mongo
-  var user = new Package(newUser);
+  var user = new User(newUser);
   user.save(function (err) {
     if (err) {
       res.sendStatus(500);
@@ -19,3 +19,5 @@ router.post('/', function(req, res, next) {
     }
   });
 });
+
+module.exports = router;
