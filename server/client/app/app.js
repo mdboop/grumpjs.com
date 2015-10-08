@@ -6,6 +6,7 @@ angular.module('grump', [
   'grump.auth',
   'grump.token',
   'grump.errorPage',
+  'grump.registration',
   'ngRoute',
   'ngSanitize',
   'btford.markdown'
@@ -38,6 +39,10 @@ angular.module('grump', [
     .when('/errorpage/:error?', {
       templateUrl: 'app/errorPage/errorpage.html',
       controller: "ErrorPageController"
+    })
+    .when('/register', {
+      templateUrl: 'app/register/registration.html',
+      controller: 'RegistrationController'
     })
     .otherwise({
         redirectTo : '/browse'

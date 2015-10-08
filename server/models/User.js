@@ -6,10 +6,11 @@ var ttl = require('mongoose-ttl');
 var userSchema = new mongoose.Schema({
   token : String,
   name  : String,
+  password: String,
   login : String,
   email : String,
-  createdAt: { 
-    type: Date,  
+  createdAt: {
+    type: Date,
     default: Date.now
   }
 
