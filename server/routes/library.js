@@ -40,7 +40,7 @@ router.get('/:search', function(req, res, next) {
 
     // Now query for grumps with this name
     var re = new RegExp(search, "i");
-    Package.find({"defaultCommand": re}, function (err, result) {
+    Package.find({"repoName": re}, function (err, result) {
       if(err) console.log(err);
       data.grumps = result;
 
@@ -53,9 +53,11 @@ router.get('/:search', function(req, res, next) {
 router.get('/:owner/:grump', function(req, res, next) {
   var owner = req.params.owner;
   var grump = req.params.grump;
+  console.log('owner is : ' + owner);
+  console.log('grump is : ' + grump);
 
   //instead we need to query mongo
-  Package.find({"author": owner, "defaultCommand": grump}, function (err, result) {
+  Package.find({"author": owner, "repoName": grump}, function (err, result) {
     if (err) { console.log(err); }
     if (result === null) {
       res.sendStatus(404);
