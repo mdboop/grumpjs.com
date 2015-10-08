@@ -4,12 +4,12 @@ var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 
-var index   = require('./routes/index');
-var library = require('./routes/library');
-var myGrumps = require('./routes/mygrumps');
-var auth = require('./routes/auth');
-var submit  = require('./routes/submit');
-var register = require('./routes/register');
+var index        = require('./routes/index');
+var library      = require('./routes/library');
+var myGrumps     = require('./routes/mygrumps');
+var auth         = require('./routes/auth');
+var submit       = require('./routes/submit');
+var register     = require('./routes/register');
 
 var app = express();
 
