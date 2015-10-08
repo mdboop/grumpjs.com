@@ -8,7 +8,7 @@ var Package   = require('../models/Package');
 
 // Submitting a package into Grump Library
 router.post('/', function(req, res, next) {
-  
+
   // user-friendly input parsing: pull github user/reponame (for github API call) out of a variety of reasonable formats
   var repo = url.parse(req.body.repo).path.split('/');  //ok with/without https
   if (repo.length > 2) { //ok with/without github.com domain
@@ -24,12 +24,12 @@ router.post('/', function(req, res, next) {
     } else {
       //bundle git response + frontend data
       info.defaultCommand = req.body.defaultCommand;
-      info.description = req.body.description;  
+      info.description = req.body.description;
 
       // post to mongo
       var pack = new Package(info);
       pack.save(function (err) {
-        if (err) { 
+        if (err) {
           res.sendStatus(500);
         } else {
           res.sendStatus(200);
