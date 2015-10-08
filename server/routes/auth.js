@@ -1,10 +1,11 @@
-var express   = require('express');
-var path      = require('path');
-var router    = express.Router();
-var User      = require('../models/User');
-var http      = require('http');
-var request   = require('request');
-var utils     = require('../helpers/route-utils');
+var express    = require('express');
+var path       = require('path');
+var router     = express.Router();
+var GithubUser = require('../models/GithubUser');
+var User       = require('../models/User');
+var http       = require('http');
+var request    = require('request');
+var utils      = require('../helpers/route-utils');
 
 // recieves the code from github and then gets the token for the user
 router.get('/signin', function(req, res, next) {
@@ -37,7 +38,7 @@ router.get('/signin', function(req, res, next) {
       };
 
       //instantiate a new user
-      var user = new User(userInfo);
+      var user = new GithubUser(userInfo);
 
       //save the user to the database and send back a token
       user.save(function(err){
@@ -57,7 +58,7 @@ router.post('/checkAuth', function (req, res, next) {
   if (!token) {
     next(new Error('No token'));
   } else {
-      User.find({token:token}, function (err, result) {
+      GithubUser.find({token:token}, function (err, result) {
         if(err) {
           res.send(false);
         } else if(result.length === 0) {
@@ -69,8 +70,19 @@ router.post('/checkAuth', function (req, res, next) {
   }
 });
 
-router.post('/login', function(){
-  // 
-})
+router.post('/login', function(req, res, next) {
+  var user = req.body;
+
+  User.find(user, function (err, result) {
+
+    if(err) {
+      res.send(false);
+    } else if(result.length === 0) {
+      res.send(false);
+    } else if(result.length === 1) {
+      res.send(result[0].id);
+    }
+  });
+});
 
 module.exports = router;

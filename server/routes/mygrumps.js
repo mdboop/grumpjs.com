@@ -10,13 +10,13 @@ var utils     = require('../helpers/route-utils');
 //get the library of grumps that belong to you
 router.get('/', function(req, res, next) {
   var token = req.headers['x-access-token'];
-  if( token === undefined) { 
-    res.send("You are not signed in"); 
+  if( token === undefined) {
+    res.send("You are not signed in");
   } else {
 
     User.findOne({token:token}, function (err, user) {
-      if(err) { 
-        throw err; 
+      if(err) {
+        throw err;
       } else if(user !== null) {
         var grumps = Package.find({ 'author' : user.login }, function (err, result) {
           res.send(result);
@@ -31,8 +31,8 @@ router.put('/', function(req, res, next) {
   var token = req.headers['x-access-token'];
   var grumpID = req.body.grumpID;
 
-  if (token === undefined) { 
-    res.send("You are not signed in"); 
+  if (token === undefined) {
+    res.send("You are not signed in");
   } else {
     User.findOne({token:token}, function (err, user) {
       if (err) { throw err; }
@@ -53,11 +53,11 @@ router.put('/', function(req, res, next) {
               //keeps the original data attached to the grump
               info.defaultCommand = pack.defaultCommand;
               //defaults to previous description, unless github has one
-              if(pack.description !== undefined) { info.description = pack.description; } 
+              if(pack.description !== undefined) { info.description = pack.description; }
 
               var newPack = new Package(info);
               newPack.save(function (err) {
-                if (err) { 
+                if (err) {
                   res.sendStatus(500);
                 } else {
                   res.sendStatus(200);
@@ -76,8 +76,8 @@ router.delete('/', function(req, res, next) {
   var token = req.headers['x-access-token'];
   var grumpID = req.body.grumpID;
 
-  if (token === undefined) { 
-    res.send("You are not signed in"); 
+  if (token === undefined) {
+    res.send("You are not signed in");
   } else {
     User.findOne({token:token}, function (err, user) {
       if (err) { throw err; }
@@ -90,7 +90,7 @@ router.delete('/', function(req, res, next) {
           //then junking it
           Package.findOne({_id: grumpID}).remove(function(err, pack) {
             if (err) { throw err; }
-            res.sendStatus(200); 
+            res.sendStatus(200);
           });
         }
       });

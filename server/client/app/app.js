@@ -6,10 +6,28 @@ angular.module('grump', [
   'grump.auth',
   'grump.token',
   'grump.errorPage',
+  'grump.registration',
+  'grump.verification',
   'ngRoute',
   'ngSanitize',
+  'ngCookies',
   'btford.markdown'
 ])
+.controller('MainController', function($scope, authFactory, $cookies, $window, $route){
+  $scope.loggedIn = false;
+
+  if($cookies.get("id")) {
+    $scope.loggedIn = true;
+  }
+
+  $scope.$watch(authFactory.loggedIn(), function(newVal) {
+    $scope.loggedIn = newVal;
+  });
+
+  $scope.logoutUser = function() {
+    authFactory.logout();
+  }
+})
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
     .when('/gettingStarted', {
@@ -38,6 +56,10 @@ angular.module('grump', [
     .when('/errorpage/:error?', {
       templateUrl: 'app/errorPage/errorpage.html',
       controller: "ErrorPageController"
+    })
+    .when('/register', {
+      templateUrl: 'app/register/registration.html',
+      controller: 'RegistrationController'
     })
     .otherwise({
         redirectTo : '/browse'
