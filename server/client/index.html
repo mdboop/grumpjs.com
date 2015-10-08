@@ -13,11 +13,9 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles/modern-business.css">
-
-
 </head>
 
-<body>
+<body ng-controller="MainController">
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -34,7 +32,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right" id="grumpBrowseLinks">
+                <ul class="nav navbar-nav navbar-right" id="grumpBrowseLinks" ng-switch="loggedIn">
                     <li>
                         <a href='#/gettingStarted' class='link'>Getting Started</a>
                     </li>
@@ -44,12 +42,13 @@
                     <li>
                         <a href='#/upload' class='link'>Upload</a>
                     </li>
-                    <li>
-                        <a href='#/signin' class='link'>Signin</a>
+                    <li ng-switch-when="true">
+                        <a href='#/mygrumps' class='link'>My Grumps</a>
                     </li>
                     <li>
-                        <a href='#/mygrumps' class='link'>My Grumps</a>
-                  </li>
+                        <a ng-switch-when="true" href='#/signout' ng-click="logoutUser()" class='link'>Signout</a>
+                        <a ng-switch-default href='#/signin' class='link'>Signin</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -58,7 +57,6 @@
     </nav>
 
     <!-- Page Content -->
-
     <div ng-view></div>
 
     <!-- Dependencies -->
@@ -73,6 +71,7 @@
 
     <!-- App files -->
     <script src="app/services/services.js"></script>
+    <script src="app/services/authFactory.js"></script>
     <script src="app/upload/upload.js"></script>
     <script src="app/browse/browse.js"></script>
     <script src="app/myGrumps/myGrumps.js"></script>

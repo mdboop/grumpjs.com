@@ -33,7 +33,7 @@ angular.module('grump.services', [])
   var tokenHeader = {
     //have to include content type else delete wont work.... angular defaults
     "Content-Type": "application/json;charset=utf-8",
-    'x-access-token': $window.localStorage.getItem('grumpToken') 
+    'x-access-token': $window.localStorage.getItem('grumpToken')
   };
 
   var getMyGrumps = function () {
