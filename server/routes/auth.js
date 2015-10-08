@@ -71,15 +71,16 @@ router.post('/checkAuth', function (req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-  var user = JSON.parse(req.body);
+  var user = req.body;
 
-  User.find({name: user.username, password: user.password}, function (err, result) {
+  User.find(user, function (err, result) {
+
     if(err) {
       res.send(false);
     } else if(result.length === 0) {
       res.send(false);
     } else if(result.length === 1) {
-      res.send(true);
+      res.send(result[0].id);
     }
   });
 });
