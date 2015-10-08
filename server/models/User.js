@@ -1,10 +1,7 @@
 var mongoose = require('../helpers/db.js');
 
-//sets expiry time on data in mongoose
-var ttl = require('mongoose-ttl');
-
 var userSchema = new mongoose.Schema({
-  name  : String,
+  name  : {type: String, unique: true},
   password: String,
   email : String,
   createdAt: {

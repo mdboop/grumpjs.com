@@ -1,6 +1,6 @@
-angular.module('grump.auth', [])
+angular.module('grump.auth', ['ngCookies'])
 
-.controller('AuthController', function ($window, $http, $scope) {
+.controller('AuthController', function ($window, $http, $scope, $cookies) {
   //this sends the user to the github signin page
   $scope.username = "";
   $scope.password = "";
@@ -14,19 +14,22 @@ angular.module('grump.auth', [])
 
   $scope.login = function() {
     var data = {
-      username: $scope.username,
-      password: $scope.password
+      name: $scope.username,
+      password: $scope.password,
     };
 
-    var successCallback = function() {
-
+    // on success of login, store the users u_id in the cookies for reference later on
+    var successCallback = function(response) {
+      var id = response.data;
+      $cookies.put('id', id);
     }
 
+    // handle an error on the post request
     var errorCallback = function() {
 
     }
 
-    $http.post('./api/auth/login', data).then(successCallback, errorCallback);
+    $http.post('/api/auth/login', data).then(successCallback, errorCallback);
   }
 });
 
