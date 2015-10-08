@@ -69,8 +69,18 @@ router.post('/checkAuth', function (req, res, next) {
   }
 });
 
-router.post('/login', function(){
-  // 
-})
+router.post('/login', function(req, res, next) {
+  var user = JSON.parse(req.body);
+
+  User.find({name: user.username, password: user.password}, function (err, result) {
+      if(err) {
+        res.send(false);
+      } else if(result.length === 0) {
+        res.send(false);
+      } else if(result.length === 1) {
+        res.send(true);
+      }
+  });
+});
 
 module.exports = router;

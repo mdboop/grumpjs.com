@@ -26,7 +26,7 @@ angular.module('grump.auth', [])
 
     }
 
-    $http.post('/api/auth', data).then(successCallback, errorCallback);
+    $http.post('./api/auth/login', data).then(successCallback, errorCallback);
   }
 });
 

@@ -11,18 +11,16 @@
     </form>
 
     <form class='form-horizontal' role='form' name="loginForm" ng-submit="login()">
-      <div class="form-group">
-        <label class="control-label " for='username'>
-          Username
-        </label>
-        <input class="textbox form-control col-sm-2" ng-model="username" placeholder="who are you?" id='username' required>
+      <div class="form-group grumpInput" id="grumpInputHeading">
+        <label class="control-label ">Signin</label>
       </div>
 
       <div class="form-group">
-        <label class="control-label " for='password'>
-          Password
-        </label>
-        <input type="password" class="textbox form-control col-sm-2" ng-model="password" placeholder="" id='password' required>
+        <input class="textbox form-control col-sm-2" ng-model="username" placeholder="username" id='username' required>
+      </div>
+
+      <div class="form-group">
+        <input type="password" class="textbox form-control col-sm-2" ng-model="password" placeholder="password" id='password' required>
       </div>
 
       <div class="form-group">
@@ -33,5 +31,8 @@
         </div>
       </div>
     </form>
+    <a class="btn btn-default" href="#/register">
+      Signup
+    </a>
   </div>
 </div>

@@ -10,7 +10,6 @@ var myGrumps = require('./routes/mygrumps');
 var auth = require('./routes/auth');
 var submit  = require('./routes/submit');
 
-
 var app = express();
 
 app.use(logger('dev'));
