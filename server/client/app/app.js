@@ -20,8 +20,8 @@ angular.module('grump', [
     $scope.loggedIn = true;
   }
 
-  $scope.$watch(authFactory.loggedIn(), function() {
-    $scope.loggedIn = authFactory.loggedIn();
+  $scope.$watch(authFactory.loggedIn(), function(newVal) {
+    $scope.loggedIn = newVal;
   });
 
   $scope.logoutUser = function() {
