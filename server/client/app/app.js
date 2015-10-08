@@ -7,10 +7,27 @@ angular.module('grump', [
   'grump.token',
   'grump.errorPage',
   'grump.registration',
+  'grump.verification',
   'ngRoute',
   'ngSanitize',
+  'ngCookies',
   'btford.markdown'
 ])
+.controller('MainController', function($scope, authFactory, $cookies, $window, $route){
+  $scope.loggedIn = false;
+
+  if($cookies.get("id")) {
+    $scope.loggedIn = true;
+  }
+
+  $scope.$watch(authFactory.loggedIn(), function() {
+    $scope.loggedIn = authFactory.loggedIn();
+  });
+
+  $scope.logoutUser = function() {
+    authFactory.logout();
+  }
+})
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
     .when('/gettingStarted', {
