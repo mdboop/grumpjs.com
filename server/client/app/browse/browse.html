@@ -1,4 +1,8 @@
-<div class="container col-lg-6 col-centered" id="grumpSearchContainer">
+<div class="container col-lg-6 col-centered" ng-controller="BrowseController" id="grumpSearchContainer" ng-init="getGrumps()">
+  <select id="categorySelector" ng-repeat="grump in grumps  | orderBy:'command' | filter:searchText">
+    <option value="{{grump.category}}">{{grump.category}}</option>
+  </select>
+
   <form class='form-horizontal' role='form' name="searchForm">
     <label class="control-label " for="grumpSearchBox">
       Search Grumps
@@ -7,15 +11,16 @@
   </form>
 </div>
 
-<div ng-controller="BrowseController" ng-init="getGrumps()" >
+<div >
   <div class="container col-centered">
     <div class="row">
       <div class="col-lg-12 col-centered grump" ng-repeat="grump in grumps  | orderBy:'command' | filter:searchText">
         <div class="panel panel-default text-left">
-            <span class="grumpDetail" id="name"><b>Grump Name</b>: <span id="grumpName">{{grump.defaultCommand}}</span></span>
-            <span class="grumpDetail" id="owner"><b>Author</b>: <span id="grumpOwner"> {{grump.author}}</span></span>
-            <span class="grumpDetail" id="description"><b>Description</b>: {{grump.description}}</span>
-          <span class="grumpDetail" id="repo"><b>Repo</b>: <a ng-href="{{grump.cloneUrl}}">{{grump.repoName}}</a></span>
+            <span class="grumpDetail name"><b>Grump Name</b>: <span class="grumpName">{{grump.defaultCommand}}</span></span>
+            <span class="grumpDetail owner"><b>Author</b>: <span class="grumpOwner"> {{grump.author}}</span></span>
+            <span class="grumpDetail category"><b>Category</b>: <span> {{grump.category}}</span></span>
+            <span class="grumpDetail description"><b>Description</b>: {{grump.description}}</span>
+          <span class="grumpDetail repo"><b>Repo</b>: <a ng-href="{{grump.cloneUrl}}" class="grumpRepo">{{grump.repoName}}</a></span>
         </div>
       </div>
     </div>

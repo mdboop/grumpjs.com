@@ -80,18 +80,24 @@ body a:focus {
   font-size: 14pt;
 }
 
-#grumpName {
+.grumpName {
   /*color: #458588;*/
   /*color: #076678;*/
-  color: #458588;
+  text-decoration: underline;
+
 }
 
 .icon-bar {
   color: #ebdbb2;
 }
 
-#grumpOwner {
+.grumpOwner {
   color: #689d6a;
+}
+
+.grumpRepo {
+  color: #458588;
+  text-decoration: underline;
 }
 
 #signinForm {

@@ -24,6 +24,7 @@ router.post('/', function(req, res, next) {
     } else {
       //bundle git response + frontend data
       info.defaultCommand = req.body.defaultCommand;
+      info.category = req.body.category;
       info.description = req.body.description;
 
       // post to mongo
