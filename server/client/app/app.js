@@ -13,8 +13,9 @@ angular.module('grump', [
   'ngCookies',
   'btford.markdown'
 ])
-.controller('MainController', function($scope, authFactory, $cookies, $window, $route){
+.controller('MainController', function($scope, $location, authFactory, $cookies, $window, $route){
   $scope.loggedIn = false;
+  $scope.url = $location.url();
 
   if($cookies.get("id")) {
     $scope.loggedIn = true;
@@ -22,6 +23,10 @@ angular.module('grump', [
 
   $scope.$watch(authFactory.loggedIn(), function(newVal) {
     $scope.loggedIn = newVal;
+  });
+
+  $scope.$on('$locationChangeSuccess', function(next, current) {
+     $scope.url = $location.url();
   });
 
   $scope.logoutUser = function() {

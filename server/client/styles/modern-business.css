@@ -59,6 +59,10 @@ body a:focus {
   color: #d65d0e;
 }
 
+.navbar-inverse .navbar-nav > li > .selected {
+  color: #d65d0e;
+}
+
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
