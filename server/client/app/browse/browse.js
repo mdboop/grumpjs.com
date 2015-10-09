@@ -2,7 +2,7 @@ angular.module('grump.browse', [])
 
 .controller('BrowseController', function ($scope, Files) {
   $scope.grumps = [];
-  $scope.filter = "General"
+  $scope.category = "General";
 
   $scope.getGrumps = function(){
     return Files.getGrumps().then(function (results) {

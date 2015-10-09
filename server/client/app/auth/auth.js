@@ -4,6 +4,7 @@ angular.module('grump.auth', ['ngCookies', 'ngRoute'])
   //this sends the user to the github signin page
   $scope.username = "";
   $scope.password = "";
+  $scope.loginFailed = false;
 
   $scope.githubLogin=function() {
     var scope = "user:email"; // this sets meta-data we are able to access about user through github api
@@ -20,8 +21,13 @@ angular.module('grump.auth', ['ngCookies', 'ngRoute'])
 
     // on success of login, store the users u_id in the cookies for reference later on
     var successCallback = function(response) {
-      var id = response.data;
-      authFactory.login(id);
+      if(response.data){
+        var id = response.data;
+        authFactory.login(id);
+      }
+      else {
+        $scope.loginFailed = true;
+      }
     }
 
     // handle an error on the post request

@@ -1,4 +1,4 @@
-angular.module('grump.services', [])
+angular.module('grump.services', ['ngCookies'])
 
 .factory('Files', function ($http, $window) {
   // Your code here
@@ -28,7 +28,7 @@ angular.module('grump.services', [])
   };
 
 })
-.factory('MyGrumps', function ($http, $window) {
+.factory('MyGrumps', function ($http, $window, $cookies) {
   //this is the only set of requests that have to deal with permissions-- so token has to be sent in header
   var tokenHeader = {
     //have to include content type else delete wont work.... angular defaults
@@ -39,6 +39,7 @@ angular.module('grump.services', [])
   var getMyGrumps = function () {
     return $http({
       method: 'GET',
+      userId: $cookies.get('id'),
       headers: tokenHeader,
       url: 'api/mygrumps'
     }).then(function (resp) {
@@ -49,6 +50,7 @@ angular.module('grump.services', [])
   var updateGrump = function (grumpID) {
     return $http({
       method: 'PUT',
+      userId: $cookies.get('id'),
       headers: tokenHeader,
       url: 'api/mygrumps',
       data: {grumpID: grumpID}
@@ -60,6 +62,7 @@ angular.module('grump.services', [])
   var deleteGrump = function (grumpID) {
     return $http({
       method: 'DELETE',
+      userId: $cookies.get('id'),
       headers: tokenHeader,
       url: 'api/mygrumps',
       data: {grumpID: grumpID}

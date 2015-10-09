@@ -10,7 +10,19 @@ var utils     = require('../helpers/route-utils');
 //get the library of grumps that belong to you
 router.get('/', function(req, res, next) {
   var token = req.headers['x-access-token'];
-  if( token === undefined) {
+
+  if(req.body.userId) {
+    User.findById(req.body.userId, function(err, res){
+      if(err) {
+        throw err;
+      } else if(res !== null) {
+        Package.find({ 'userId' : req.body.userId }, function (err, result) {
+          res.send(result);
+        });
+      }
+    })
+  }
+  else if( token === undefined) {
     res.send("You are not signed in");
   } else {
 

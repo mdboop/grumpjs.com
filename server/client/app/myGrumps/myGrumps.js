@@ -10,7 +10,6 @@ angular.module('grump.myGrumps', ['ngCookies'])
 
       } else if (results.data.length === 0) {
         $location.url('/errorpage/?error=' + "you dont have any grumps to your name");
-
       }
 
       $scope.grumps = results.data;
