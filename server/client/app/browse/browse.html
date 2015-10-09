@@ -1,5 +1,5 @@
 <div class="container col-lg-6 col-centered" ng-controller="BrowseController" id="grumpSearchContainer" ng-init="getGrumps()">
-  <select id="categorySelector" ng-repeat="grump in grumps  | orderBy:'command' | filter:searchText">
+  <select id="categorySelector" ng-repeat="grump in grumps  | orderBy:'command' | filter:searchText" ng-change="filterGrumps()" ng-model="filter">
     <option value="{{grump.category}}">{{grump.category}}</option>
   </select>
 
