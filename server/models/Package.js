@@ -1,10 +1,11 @@
 var mongoose = require('../helpers/db.js');
 
 var packageSchema = new mongoose.Schema({
-  repoName: String, 
+  repoName: String,
   author: String,           // unique (based on github handle)
   defaultCommand: String,   // not necessarily unique (conflict resolution refers to authors)
   cloneUrl : String,
+  category : { type:String, default:'General' },
   description: String
 });
 
