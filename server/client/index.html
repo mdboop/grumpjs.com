@@ -47,7 +47,7 @@
                     </li>
                     <li>
                         <a ng-if="loggedIn" href='#/signout' ng-click="logoutUser()" class='link'>Signout</a>
-                        <a ng-if="!loggedIn" href='#/signin' class='link'>Signin</a>
+                        <a ng-if="!loggedIn" href='#/signin' ng-class="{ 'selected' : url == '/signin', 'link' : true }">Signin</a>
                     </li>
                 </ul>
             </div>
