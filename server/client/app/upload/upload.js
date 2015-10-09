@@ -1,6 +1,6 @@
-angular.module('grump.upload', [])
+angular.module('grump.upload', ['ngCookies'])
 
-.controller('UploadController', function ($scope, Files, $location) {
+.controller('UploadController', function ($scope, Files, $location, $cookies) {
   $scope.doc = {
     repo : null,
     defaultCommand : null,
@@ -8,6 +8,10 @@ angular.module('grump.upload', [])
   };
 
   $scope.submitForm = function(obj) {
+    if($cookies.get('id')) {
+      obj.userId = $cookies.get('id');
+    }
+
     Files.submitGrump(obj)
       .then(function(result){
         //TODO: notify user of success

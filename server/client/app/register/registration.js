@@ -2,12 +2,14 @@ angular.module('grump.registration', [])
 
 .controller('RegistrationController', function ($scope, $window, $http) {
   $scope.username = "";
+  $scope.handle   = ""; 
   $scope.password = "";
   $scope.email    = "";
 
   $scope.register = function() {
     var user = {
       name:     $scope.username,
+      handle:   $scope.handle,
       password: $scope.password,
       email:    $scope.email
     }
